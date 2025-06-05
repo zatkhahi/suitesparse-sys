@@ -307,6 +307,14 @@ fn main() -> Result<(), String> {
         println!("cargo:rustc-link-lib={}={}", library_type, lib_name);
     }
 
+    if cfg!(feature = "openmp") {
+        println!("cargo:rustc-link-lib=gomp");
+    }
+    if cfg!(feature = "intel_omp") {
+        println!("cargo:rustc-link-search=native={}", "/opt/intel/oneapi/compiler/latest/lib/");
+        println!("cargo:rustc-link-lib={}={}", library_type, "iomp5");
+    }
+
     println!("cargo:rerun-if-changed=build.rs");
     println!("cargo:rerun-if-changed=wrapper.h");
 
