@@ -1,11 +1,11 @@
 [package]
 name = "suitesparse_sys"
-version = "0.1.4"
+version = "0.1.5"
 edition = "2021"
 description = "sys crate for suitesparse library"
 license = "MIT"
 authors = ["Martin Robinson <martinjrobins@gmail.com>", "Richard Lincoln" ]
-repository = "https://github.com/martinjrobins/suitesparse-sys"
+repository = "https://github.com/zatkhahi/suitesparse-sys"
 links = "suitesparse"
 exclude = [
     "vendor/LAGraph/data", "vendor/LAGraph/papers", "vendor/LAGraph/src/benchmark", "vendor/LAGraph/src/test",
@@ -24,6 +24,7 @@ exclude = [
     "vendor/CSparse/Matrix", "vendor/CSparse/MATLAB",
     "vendor/**/*.pdf",
 ]
+build = "build.rs"
 
 [dependencies]
 
@@ -59,3 +60,14 @@ intel_omp=[]
 [package.metadata.docs.rs]
 
 features = ["build_vendor", "klu", "amd", "colamd", "btf"]
+
+[build]
+rustflags = [
+  "-L", "native=/usr/local/lib",
+  "-l", "static=klu",
+  "-l", "static=amd",
+  "-l", "static=btf",
+  "-l", "static=colamd",
+  "-l", "static=suitesparseconfig",
+  "-l", "dylib=iomp5" # or gomp
+]
