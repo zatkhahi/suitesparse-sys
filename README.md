@@ -44,7 +44,8 @@ Each library in the SuiteSparse library is a separate feature. The features are:
 - `spex`: Bindings to the SPEx library.
 - `graphblas`: Bindings to the GraphBLAS library.
 - `lagraph`: Bindings to the LA-Graph library.
+- `intel_omp`: Add link to intel openmp
 
 The default feature list is:
 
-- [`klu`, `amd`, `colamd`, `btf`]
+- [`klu`, `amd`, `colamd`, `btf`, `static_libraries`, `intel_omp`]
