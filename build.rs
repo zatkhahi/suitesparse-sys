@@ -229,7 +229,7 @@ fn build_vendor() -> Result<Library, String> {
         .define("BUILD_SHARED_LIBS", shared_libraries)
         .define("SUITESPARSE_ENABLE_PROJECTS", build_libraries.join(";"))
         .define("SUITESPARSE_DEMOS", "OFF")
-        .define("SUITESPARSE_CONFIG_USE_OPENMP", feature!("openmp"));
+        .define("SUITESPARSE_USE_OPENMP", feature!("openmp"));
 
     let dst = config.build();
     let dst_disp = dst.display();
